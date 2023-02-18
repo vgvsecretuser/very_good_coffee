@@ -1,0 +1,11 @@
+{
+    "@@locale": "pt",
+    "counterAppBarTitle": "Contador",
+    "@counterAppBarTitle": {
+        "description": "Texto mostrado na AppBar da página do contador"
+    },
+    "coffeeAppBarTitle": "Café",
+    "@coffeeAppBarTitle": {
+        "description": "Texto mostrado na AppBar da página do café"
+    }
+}
