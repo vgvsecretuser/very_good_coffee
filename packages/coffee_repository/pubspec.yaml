@@ -1,0 +1,22 @@
+name: coffee_repository
+description: Coffee repository
+version: 0.1.0+1
+publish_to: none
+
+environment:
+  sdk: ">=2.19.0 <3.0.0"
+  flutter: 3.7.0
+
+dependencies:
+  cached_network_image: ^3.2.3
+  coffee_api:
+    path: ../coffee_api
+  flutter:
+    sdk: flutter
+  flutter_cache_manager: ^3.3.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  mocktail: ^0.3.0
+  very_good_analysis: ^4.0.0
