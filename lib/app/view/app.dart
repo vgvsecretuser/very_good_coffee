@@ -1,9 +1,25 @@
+import 'package:coffee_repository/coffee_repository.dart';
 import 'package:flutter/material.dart';
-import 'package:very_good_coffee/counter/counter.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:very_good_coffee/coffee/view/coffee_page.dart';
 import 'package:very_good_coffee/l10n/l10n.dart';
 
 class App extends StatelessWidget {
-  const App({super.key});
+  const App({required CoffeeRepository coffeeRepository, super.key})
+      : _coffeeRepository = coffeeRepository;
+  final CoffeeRepository _coffeeRepository;
+
+  @override
+  Widget build(BuildContext context) {
+    return RepositoryProvider.value(
+      value: _coffeeRepository,
+      child: const CoffeeApp(),
+    );
+  }
+}
+
+class CoffeeApp extends StatelessWidget {
+  const CoffeeApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +32,7 @@ class App extends StatelessWidget {
       ),
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
-      home: const CounterPage(),
+      home: const CoffeePage(),
     );
   }
 }

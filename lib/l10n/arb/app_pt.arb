@@ -7,5 +7,13 @@
     "coffeeAppBarTitle": "Café",
     "@coffeeAppBarTitle": {
         "description": "Texto mostrado na AppBar da página do café"
+    },
+    "getImageButton": "Nova imagem",
+    "@getImageButton": {
+        "description": "Texto que aparece no botão para obter uma nova imagem"
+    },
+    "unexpectedError": "Unexpected error.",
+    "@unexpectedError": {
+        "description": "Text que aparece na snackbar quando um erro inesperado acontece"
     }
 }

@@ -9,6 +9,9 @@ environment:
 
 dependencies:
   bloc: ^8.1.1
+  coffee_repository:
+    path: packages/coffee_repository
+  equatable: ^2.0.5
   flutter:
     sdk: flutter
   flutter_bloc: ^8.1.2
@@ -26,3 +29,5 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   generate: true
+  assets:
+    - assets/images/
