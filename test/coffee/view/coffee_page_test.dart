@@ -54,12 +54,14 @@ void main() {
       ),
     );
     expect(find.byType(CoffeeImageLoader), findsOneWidget);
+    expect(find.byType(CircularProgressIndicator), findsOneWidget);
+    expect(find.byType(CoffeeImage), findsNothing);
   });
 
-  testWidgets('renders CoffeeImage', (tester) async {
+  testWidgets('renders CoffeeImage when not loading', (tester) async {
     when(() => coffeeCubit.state).thenReturn(
       const CoffeeState(
-        status: CoffeeStatus.loading,
+        status: CoffeeStatus.completed,
       ),
     );
     await tester.pumpApp(
@@ -68,6 +70,7 @@ void main() {
         child: const CoffeeView(),
       ),
     );
+    expect(find.byType(CircularProgressIndicator), findsNothing);
     expect(find.byType(CoffeeImage), findsOneWidget);
   });
 
