@@ -31,7 +31,7 @@ void main() {
     expect(find.byType(CoffeeImageLoader), findsOneWidget);
   });
 
-  testWidgets('renders LinearProgressIndicator', (tester) async {
+  testWidgets('renders CircularProgressIndicator', (tester) async {
     when(() => coffeeCubit.state).thenReturn(
       const CoffeeState(
         status: CoffeeStatus.loading,
@@ -43,7 +43,7 @@ void main() {
         child: const CoffeeImageLoader(),
       ),
     );
-    expect(find.byType(LinearProgressIndicator), findsOneWidget);
+    expect(find.byType(CircularProgressIndicator), findsOneWidget);
   });
 
   testWidgets('do not renders LinearProgressIndicator on init state',
