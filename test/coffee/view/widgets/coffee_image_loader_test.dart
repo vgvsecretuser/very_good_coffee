@@ -25,10 +25,10 @@ void main() {
     await tester.pumpApp(
       BlocProvider.value(
         value: coffeeCubit,
-        child: const LoadingIndicator(),
+        child: const CoffeeImageLoader(),
       ),
     );
-    expect(find.byType(LoadingIndicator), findsOneWidget);
+    expect(find.byType(CoffeeImageLoader), findsOneWidget);
   });
 
   testWidgets('renders LinearProgressIndicator', (tester) async {
@@ -40,7 +40,7 @@ void main() {
     await tester.pumpApp(
       BlocProvider.value(
         value: coffeeCubit,
-        child: const LoadingIndicator(),
+        child: const CoffeeImageLoader(),
       ),
     );
     expect(find.byType(LinearProgressIndicator), findsOneWidget);
@@ -54,7 +54,7 @@ void main() {
     await tester.pumpApp(
       BlocProvider.value(
         value: coffeeCubit,
-        child: const LoadingIndicator(),
+        child: const CoffeeImageLoader(),
       ),
     );
     expect(find.byType(LinearProgressIndicator), findsNothing);
@@ -70,7 +70,7 @@ void main() {
     await tester.pumpApp(
       BlocProvider.value(
         value: coffeeCubit,
-        child: const LoadingIndicator(),
+        child: const CoffeeImageLoader(),
       ),
     );
     expect(find.byType(LinearProgressIndicator), findsNothing);
@@ -86,7 +86,7 @@ void main() {
     await tester.pumpApp(
       BlocProvider.value(
         value: coffeeCubit,
-        child: const LoadingIndicator(),
+        child: const CoffeeImageLoader(),
       ),
     );
     expect(find.byType(LinearProgressIndicator), findsNothing);

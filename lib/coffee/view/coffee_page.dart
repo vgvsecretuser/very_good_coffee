@@ -28,20 +28,22 @@ class CoffeeView extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = context.l10n;
     return Scaffold(
-      appBar: AppBar(
-        title: Text(l10n.coffeeAppBarTitle),
-        bottom: const LoadingIndicator(),
-      ),
+      appBar: AppBar(title: Text(l10n.coffeeAppBarTitle)),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          const Expanded(child: CoffeeImage()),
-          const SizedBox(height: 8),
+          const Expanded(
+            child: SingleChildScrollView(child: CoffeeImageLoader()),
+          ),
           SizedBox(
-            height: 48,
-            child: ElevatedButton(
-              onPressed: () => context.read<CoffeeCubit>().getCoffee(),
-              child: Text(l10n.getImageButton),
+            height: 90,
+            child: Padding(
+              padding: const EdgeInsets.all(16),
+              child: ElevatedButton(
+                onPressed: () => context.read<CoffeeCubit>().getCoffee(),
+                child: Text(l10n.getImageButton),
+              ),
             ),
           ),
         ],

@@ -53,7 +53,7 @@ void main() {
         child: const CoffeeView(),
       ),
     );
-    expect(find.byType(LoadingIndicator), findsOneWidget);
+    expect(find.byType(CoffeeImageLoader), findsOneWidget);
   });
 
   testWidgets('renders CoffeeImage', (tester) async {
