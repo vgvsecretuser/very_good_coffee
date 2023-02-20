@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-// ignore_for_file: implicit_dynamic_parameter
+// ignore_for_file: implicit_dynamic_parameter, cast_nullable_to_non_nullable
 
 part of 'random_path.dart';
 

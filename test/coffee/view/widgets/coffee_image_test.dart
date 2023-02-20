@@ -14,7 +14,8 @@ void main() {
   setUp(() {
     coffeeCubit = MockCoffeeCubit();
   });
-  testWidgets('renders CounterImage', (tester) async {
+
+  testWidgets('renders CoffeeImage', (tester) async {
     when(() => coffeeCubit.state).thenReturn(const CoffeeState());
     await tester.pumpApp(
       BlocProvider.value(

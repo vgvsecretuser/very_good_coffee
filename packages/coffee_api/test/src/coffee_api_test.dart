@@ -84,8 +84,11 @@ void main() {
         final actual = await apiClient.randomCoffeeUrl();
         expect(
           actual,
-          isA<String>().having((url) => url, 'url',
-              'https://coffee.alexflipnote.dev/7eAokF8_ro4_coffee.jpg'),
+          isA<String>().having(
+            (url) => url,
+            'url',
+            'https://coffee.alexflipnote.dev/7eAokF8_ro4_coffee.jpg',
+          ),
         );
       });
     });

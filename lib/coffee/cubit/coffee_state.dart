@@ -19,25 +19,24 @@ class CoffeeState extends Equatable {
   const CoffeeState({
     this.status = CoffeeStatus.init,
     this.exception,
-    this.image =
-        const Image(image: AssetImage('assets/images/placeholder.png')),
+    this.imageUrl = '',
   });
   final CoffeeStatus status;
-  final Image image;
+  final String imageUrl;
   final Object? exception;
 
   CoffeeState copyWith({
     CoffeeStatus? status,
     Object? exception,
-    Image? image,
+    String? imageUrl,
   }) {
     return CoffeeState(
       status: status ?? this.status,
-      image: image ?? this.image,
+      imageUrl: imageUrl ?? this.imageUrl,
       exception: exception ?? this.exception,
     );
   }
 
   @override
-  List<Object?> get props => [status, exception, image];
+  List<Object?> get props => [status, exception, imageUrl];
 }

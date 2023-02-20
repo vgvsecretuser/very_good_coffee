@@ -1,6 +1,5 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:coffee_repository/coffee_repository.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:very_good_coffee/coffee/coffee.dart';
@@ -15,9 +14,8 @@ void main() {
     setUp(() async {
       coffeeRepository = MockCoffeeRepository();
       when(
-        () => coffeeRepository.getCoffeeImage(),
-      ).thenAnswer((_) async =>
-          const Image(image: AssetImage('assets/images/placeholder.png')));
+        () => coffeeRepository.getCoffeeImageUrl(),
+      ).thenAnswer((_) async => 'assets/images/placeholder.png');
       coffeeCubit = CoffeeCubit(coffeeRepository);
     });
 
@@ -32,7 +30,7 @@ void main() {
         build: () => coffeeCubit,
         act: (cubit) => cubit.getCoffee(),
         verify: (_) {
-          verify(() => coffeeRepository.getCoffeeImage()).called(1);
+          verify(() => coffeeRepository.getCoffeeImageUrl()).called(1);
         },
       );
 
@@ -40,7 +38,7 @@ void main() {
         'emits [loading, error] when getCoffeeImage throws',
         setUp: () {
           when(
-            () => coffeeRepository.getCoffeeImage(),
+            () => coffeeRepository.getCoffeeImageUrl(),
           ).thenThrow(Exception('oops'));
         },
         build: () => coffeeCubit,
@@ -69,9 +67,9 @@ void main() {
               .having((w) => w.status.isCompleted, 'isCompleted', true)
               .having((w) => w.status.hasError, 'hasError', false)
               .having(
-                (w) => w.image,
+                (w) => w.imageUrl,
                 'image',
-                isA<Image>().having((i) => i.image, 'imageProvider', isNotNull),
+                'assets/images/placeholder.png',
               ),
         ],
       );

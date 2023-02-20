@@ -8,12 +8,10 @@ environment:
   flutter: 3.7.3
 
 dependencies:
-  cached_network_image: ^3.2.3
   coffee_api:
     path: ../coffee_api
   flutter:
     sdk: flutter
-  flutter_cache_manager: ^3.3.0
 
 dev_dependencies:
   flutter_test:

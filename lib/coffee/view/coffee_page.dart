@@ -34,7 +34,12 @@ class CoffeeView extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           const Expanded(
-            child: SingleChildScrollView(child: CoffeeImageLoader()),
+            child: Center(
+              child: Padding(
+                padding: EdgeInsets.only(top: 16, left: 16, right: 16),
+                child: SingleChildScrollView(child: CoffeeImage()),
+              ),
+            ),
           ),
           SizedBox(
             height: 90,

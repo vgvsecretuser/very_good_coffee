@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
+import 'package:mocktail_image_network/mocktail_image_network.dart';
 import 'package:very_good_coffee/coffee/coffee.dart';
 
 import '../../helpers/helpers.dart';
@@ -41,7 +42,7 @@ void main() {
     expect(find.byType(CoffeeView), findsOneWidget);
   });
 
-  testWidgets('renders LoadingIndicator', (tester) async {
+  testWidgets('renders CircularProgressIndicator', (tester) async {
     when(() => coffeeCubit.state).thenReturn(
       const CoffeeState(
         status: CoffeeStatus.loading,
@@ -53,25 +54,25 @@ void main() {
         child: const CoffeeView(),
       ),
     );
-    expect(find.byType(CoffeeImageLoader), findsOneWidget);
     expect(find.byType(CircularProgressIndicator), findsOneWidget);
-    expect(find.byType(CoffeeImage), findsNothing);
+    expect(find.byType(CoffeeImage), findsOneWidget);
   });
 
-  testWidgets('renders CoffeeImage when not loading', (tester) async {
+  testWidgets('renders Image when not loading', (tester) async {
     when(() => coffeeCubit.state).thenReturn(
       const CoffeeState(
         status: CoffeeStatus.completed,
       ),
     );
-    await tester.pumpApp(
-      BlocProvider.value(
-        value: coffeeCubit,
-        child: const CoffeeView(),
-      ),
-    );
-    expect(find.byType(CircularProgressIndicator), findsNothing);
-    expect(find.byType(CoffeeImage), findsOneWidget);
+    await mockNetworkImages(() async {
+      await tester.pumpApp(
+        BlocProvider.value(
+          value: coffeeCubit,
+          child: const CoffeeView(),
+        ),
+      );
+      expect(find.byType(Image), findsOneWidget);
+    });
   });
 
   testWidgets('renders ElevatedButton', (tester) async {

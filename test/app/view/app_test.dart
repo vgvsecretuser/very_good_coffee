@@ -6,9 +6,11 @@ import 'package:very_good_coffee/coffee/view/coffee_page.dart';
 void main() {
   group('App', () {
     testWidgets('renders CounterPage', (tester) async {
-      await tester.pumpWidget(App(
-        coffeeRepository: CoffeeRepository(),
-      ));
+      await tester.pumpWidget(
+        App(
+          coffeeRepository: CoffeeRepository(),
+        ),
+      );
       expect(find.byType(CoffeePage), findsOneWidget);
     });
   });
