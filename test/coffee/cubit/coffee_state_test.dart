@@ -20,22 +20,31 @@ void main() {
 
     test('change the status to loading', () {
       final coffeeState =
-          const CoffeeState().copyWith(status: CoffeeStatus.loading);
-      expect(coffeeState, const CoffeeState(status: CoffeeStatus.loading));
+          const CoffeeState().copyWith(status: CoffeeRepositoryStatus.loading);
+      expect(
+        coffeeState,
+        const CoffeeState(status: CoffeeRepositoryStatus.loading),
+      );
       expect(coffeeState.status.isLoading, true);
     });
 
     test('change the status to completed', () {
-      final coffeeState =
-          const CoffeeState().copyWith(status: CoffeeStatus.completed);
-      expect(coffeeState, const CoffeeState(status: CoffeeStatus.completed));
+      final coffeeState = const CoffeeState()
+          .copyWith(status: CoffeeRepositoryStatus.completed);
+      expect(
+        coffeeState,
+        const CoffeeState(status: CoffeeRepositoryStatus.completed),
+      );
       expect(coffeeState.status.isCompleted, true);
     });
 
     test('change the status to error', () {
       final coffeeState =
-          const CoffeeState().copyWith(status: CoffeeStatus.error);
-      expect(coffeeState, const CoffeeState(status: CoffeeStatus.error));
+          const CoffeeState().copyWith(status: CoffeeRepositoryStatus.error);
+      expect(
+        coffeeState,
+        const CoffeeState(status: CoffeeRepositoryStatus.error),
+      );
       expect(coffeeState.status.hasError, true);
     });
 

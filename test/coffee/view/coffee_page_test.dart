@@ -20,7 +20,7 @@ void main() {
   testWidgets('renders CoffeePage', (tester) async {
     when(() => coffeeCubit.state).thenReturn(
       const CoffeeState(
-        status: CoffeeStatus.loading,
+        status: CoffeeRepositoryStatus.loading,
       ),
     );
     await tester.pumpApp(const CoffeePage());
@@ -30,7 +30,7 @@ void main() {
   testWidgets('renders CoffeeView', (tester) async {
     when(() => coffeeCubit.state).thenReturn(
       const CoffeeState(
-        status: CoffeeStatus.loading,
+        status: CoffeeRepositoryStatus.loading,
       ),
     );
     await tester.pumpApp(
@@ -45,7 +45,7 @@ void main() {
   testWidgets('renders CircularProgressIndicator', (tester) async {
     when(() => coffeeCubit.state).thenReturn(
       const CoffeeState(
-        status: CoffeeStatus.loading,
+        status: CoffeeRepositoryStatus.loading,
       ),
     );
     await tester.pumpApp(
@@ -58,10 +58,11 @@ void main() {
     expect(find.byType(CoffeeImage), findsOneWidget);
   });
 
-  testWidgets('renders Image when not loading', (tester) async {
+  testWidgets('renders Image when url is set', (tester) async {
     when(() => coffeeCubit.state).thenReturn(
       const CoffeeState(
-        status: CoffeeStatus.completed,
+        status: CoffeeRepositoryStatus.completed,
+        imageUrl: 'anyurl',
       ),
     );
     await mockNetworkImages(() async {
@@ -75,10 +76,27 @@ void main() {
     });
   });
 
+  testWidgets('do not render Image when url is not set', (tester) async {
+    when(() => coffeeCubit.state).thenReturn(
+      const CoffeeState(
+        status: CoffeeRepositoryStatus.completed,
+      ),
+    );
+    await mockNetworkImages(() async {
+      await tester.pumpApp(
+        BlocProvider.value(
+          value: coffeeCubit,
+          child: const CoffeeView(),
+        ),
+      );
+      expect(find.byType(Image), findsNothing);
+    });
+  });
+
   testWidgets('renders ElevatedButton', (tester) async {
     when(() => coffeeCubit.state).thenReturn(
       const CoffeeState(
-        status: CoffeeStatus.loading,
+        status: CoffeeRepositoryStatus.loading,
       ),
     );
     await tester.pumpApp(

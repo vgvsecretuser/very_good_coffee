@@ -10,14 +10,28 @@ class CoffeeCubit extends Cubit<CoffeeState> {
   final CoffeeRepository _coffeeRepository;
 
   Future<void> getCoffee() async {
-    emit(state.copyWith(status: CoffeeStatus.loading));
+    emit(state.copyWith(status: CoffeeRepositoryStatus.loading));
     try {
       final image = await _coffeeRepository.getCoffeeImageUrl().timeout(
             const Duration(seconds: 5),
           );
-      emit(state.copyWith(status: CoffeeStatus.completed, imageUrl: image));
+      emit(
+        state.copyWith(
+          status: CoffeeRepositoryStatus.completed,
+          imageUrl: image,
+        ),
+      );
     } catch (e) {
-      emit(state.copyWith(status: CoffeeStatus.error, exception: e));
+      emit(state.copyWith(status: CoffeeRepositoryStatus.error, exception: e));
     }
+  }
+
+  void onNetworkImageError(String message) {
+    emit(
+      state.copyWith(
+        status: CoffeeRepositoryStatus.error,
+        exception: NetworkImageException(),
+      ),
+    );
   }
 }

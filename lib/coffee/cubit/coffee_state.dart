@@ -1,32 +1,34 @@
 part of 'coffee_cubit.dart';
 
-enum CoffeeStatus {
+enum CoffeeRepositoryStatus {
   init,
   loading,
   error,
   completed,
 }
 
-extension CoffeeStatusX on CoffeeStatus {
-  bool get isInit => this == CoffeeStatus.init;
-  bool get isLoading => this == CoffeeStatus.loading;
-  bool get hasError => this == CoffeeStatus.error;
-  bool get isCompleted => this == CoffeeStatus.completed;
+extension CoffeeStatusX on CoffeeRepositoryStatus {
+  bool get isInit => this == CoffeeRepositoryStatus.init;
+  bool get isLoading => this == CoffeeRepositoryStatus.loading;
+  bool get hasError => this == CoffeeRepositoryStatus.error;
+  bool get isCompleted => this == CoffeeRepositoryStatus.completed;
 }
+
+class NetworkImageException implements Exception {}
 
 /// The Coffee state to be managed by cubit.
 class CoffeeState extends Equatable {
   const CoffeeState({
-    this.status = CoffeeStatus.init,
+    this.status = CoffeeRepositoryStatus.init,
     this.exception,
     this.imageUrl = '',
   });
-  final CoffeeStatus status;
+  final CoffeeRepositoryStatus status;
   final String imageUrl;
   final Object? exception;
 
   CoffeeState copyWith({
-    CoffeeStatus? status,
+    CoffeeRepositoryStatus? status,
     Object? exception,
     String? imageUrl,
   }) {

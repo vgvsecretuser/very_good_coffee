@@ -21,7 +21,7 @@ void main() {
 
     test('initial state is correct', () {
       final coffeeCubit = CoffeeCubit(coffeeRepository);
-      expect(coffeeCubit.state.status, CoffeeStatus.init);
+      expect(coffeeCubit.state.status, CoffeeRepositoryStatus.init);
     });
 
     group('getCoffee', () {
@@ -44,9 +44,9 @@ void main() {
         build: () => coffeeCubit,
         act: (cubit) => cubit.getCoffee(),
         expect: () => <dynamic>[
-          const CoffeeState(status: CoffeeStatus.loading),
+          const CoffeeState(status: CoffeeRepositoryStatus.loading),
           isA<CoffeeState>()
-              .having((w) => w.status, 'status', CoffeeStatus.error)
+              .having((w) => w.status, 'status', CoffeeRepositoryStatus.error)
               .having((s) => s.exception, 'exception', isNotNull)
               .having(
                 (s) => s.exception.toString(),
@@ -61,9 +61,13 @@ void main() {
         build: () => coffeeCubit,
         act: (cubit) => cubit.getCoffee(),
         expect: () => <dynamic>[
-          const CoffeeState(status: CoffeeStatus.loading),
+          const CoffeeState(status: CoffeeRepositoryStatus.loading),
           isA<CoffeeState>()
-              .having((w) => w.status, 'status', CoffeeStatus.completed)
+              .having(
+                (w) => w.status,
+                'status',
+                CoffeeRepositoryStatus.completed,
+              )
               .having((w) => w.status.isCompleted, 'isCompleted', true)
               .having((w) => w.status.hasError, 'hasError', false)
               .having(
@@ -71,6 +75,26 @@ void main() {
                 'image',
                 'assets/images/placeholder.png',
               ),
+        ],
+      );
+
+      blocTest<CoffeeCubit, CoffeeState>(
+        'emits [error, exception] on network error',
+        build: () => coffeeCubit,
+        act: (cubit) => cubit.onNetworkImageError('network image error'),
+        expect: () => <dynamic>[
+          isA<CoffeeState>()
+              .having(
+                (w) => w.status,
+                'status',
+                CoffeeRepositoryStatus.error,
+              )
+              .having((w) => w.status.hasError, 'hasError', true)
+              .having(
+                (e) => e.exception,
+                'exception',
+                isA<NetworkImageException>(),
+              )
         ],
       );
     });
