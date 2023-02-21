@@ -19,9 +19,9 @@ void main() {
       coffeeCubit = CoffeeCubit(coffeeRepository);
     });
 
-    test('initial state is init', () {
+    test('initial state is init and start loading right after', () {
       final coffeeCubit = CoffeeCubit(coffeeRepository);
-      expect(coffeeCubit.state.status, CoffeeRepositoryStatus.init);
+      expect(coffeeCubit.state.status, CoffeeRepositoryStatus.loading);
     });
 
     group('getCoffee', () {
@@ -30,7 +30,8 @@ void main() {
         build: () => coffeeCubit,
         act: (cubit) => cubit.getCoffee(),
         verify: (_) {
-          verify(() => coffeeRepository.getCoffeeImageUrl()).called(1);
+          // one call at constructor and another when getCoffee is called.
+          verify(() => coffeeRepository.getCoffeeImageUrl()).called(2);
         },
       );
 
@@ -44,7 +45,10 @@ void main() {
         build: () => coffeeCubit,
         act: (cubit) => cubit.getCoffee(),
         expect: () => <dynamic>[
-          const CoffeeState(status: CoffeeRepositoryStatus.loading),
+          const CoffeeState(
+            status: CoffeeRepositoryStatus.loading,
+            imageUrl: 'assets/images/placeholder.png',
+          ),
           isA<CoffeeState>()
               .having((w) => w.status, 'status', CoffeeRepositoryStatus.error)
               .having((s) => s.exception, 'exception', isNotNull)
@@ -61,7 +65,10 @@ void main() {
         build: () => coffeeCubit,
         act: (cubit) => cubit.getCoffee(),
         expect: () => <dynamic>[
-          const CoffeeState(status: CoffeeRepositoryStatus.loading),
+          const CoffeeState(
+            status: CoffeeRepositoryStatus.loading,
+            imageUrl: 'assets/images/placeholder.png',
+          ),
           isA<CoffeeState>()
               .having(
                 (w) => w.status,

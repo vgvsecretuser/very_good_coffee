@@ -8,9 +8,17 @@
     "@coffeeAppBarTitle": {
         "description": "Texto mostrado na AppBar da página do café"
     },
+    "emptyState": "Você ainda não tem nenhuma image.\nClique no botão de favorito na foto para adicionar uma.",
+    "@emptyState": {
+        "description": "Texto exibido na tela de empty state da lista de imagens"
+    },
     "getImageButton": "Nova imagem",
     "@getImageButton": {
         "description": "Texto que aparece no botão para obter uma nova imagem"
+    },
+    "maxNumberOfItemsError": "Não é possível salvar. Limite máximo de items atingido.",
+    "@maxNumberOfItemsError": {
+        "description": "Texto mostrado quando uma imagem é favoritada mas não há mais para armazenar"
     },
     "unexpectedError": "Unexpected error.",
     "@unexpectedError": {

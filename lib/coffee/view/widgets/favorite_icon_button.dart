@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:very_good_coffee/coffee/coffee.dart';
+import 'package:very_good_coffee/l10n/l10n.dart';
 
 class FavoriteIconButton extends StatelessWidget {
   const FavoriteIconButton(
@@ -16,12 +17,24 @@ class FavoriteIconButton extends StatelessWidget {
       alignment: Alignment.topRight,
       child: IconButton(
         icon: const _IconFilled(),
-        onPressed: () =>
-            context.read<FavoritesIconCubit>().onClicFavoriteIconButton(url),
+        onPressed: () => _onPressed(context),
         iconSize: 25,
         color: Theme.of(context).secondaryHeaderColor,
       ),
     );
+  }
+
+  void _onPressed(BuildContext context) {
+    try {
+      context.read<FavoritesIconCubit>().onClicFavoriteIconButton(url);
+    } on MaxNumberOfItemsException {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          backgroundColor: Colors.green,
+          content: Text(context.l10n.maxNumberOfItemsError),
+        ),
+      );
+    }
   }
 }
 

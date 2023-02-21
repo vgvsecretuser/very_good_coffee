@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:very_good_coffee/coffee/coffee.dart';
+import 'package:very_good_coffee/favorites/favorites.dart';
 import 'package:very_good_coffee/l10n/l10n.dart';
 
 export 'widgets/widgets.dart';
@@ -35,7 +36,19 @@ class CoffeeView extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = context.l10n;
     return Scaffold(
-      appBar: AppBar(title: Text(l10n.coffeeAppBarTitle)),
+      appBar: AppBar(
+        title: Text(l10n.coffeeAppBarTitle),
+        actions: [
+          IconButton(
+            onPressed: () => Navigator.of(context).push(
+              MaterialPageRoute<FavoritesPage>(
+                builder: (context) => const FavoritesPage(),
+              ),
+            ),
+            icon: const Icon(Icons.favorite_outline_outlined),
+          ),
+        ],
+      ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.stretch,

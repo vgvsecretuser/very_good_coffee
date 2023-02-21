@@ -6,7 +6,9 @@ import 'package:equatable/equatable.dart';
 part 'coffee_state.dart';
 
 class CoffeeCubit extends Cubit<CoffeeState> {
-  CoffeeCubit(this._coffeeRepository) : super(const CoffeeState());
+  CoffeeCubit(this._coffeeRepository) : super(const CoffeeState()) {
+    getCoffee();
+  }
   final CoffeeRepository _coffeeRepository;
 
   Future<void> getCoffee() async {
