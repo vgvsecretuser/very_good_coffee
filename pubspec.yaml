@@ -12,6 +12,8 @@ dependencies:
   coffee_repository:
     path: packages/coffee_repository
   equatable: ^2.0.5
+  favorites_repository:
+    path: packages/favorites_repository
   flutter:
     sdk: flutter
   flutter_bloc: ^8.1.2
@@ -21,6 +23,7 @@ dependencies:
 
 dev_dependencies:
   bloc_test: ^9.1.1
+  flutter_cache_manager: ^3.3.0
   flutter_test:
     sdk: flutter
   mocktail: ^0.3.0

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:very_good_coffee/coffee/coffee.dart';
+import 'package:very_good_coffee/favorites/favorites.dart';
 
 class CoffeeImage extends StatelessWidget {
   const CoffeeImage({super.key});
@@ -103,15 +104,7 @@ class _VisibilitySelectableImage extends StatelessWidget {
       child: Stack(
         children: [
           child,
-          Align(
-            alignment: Alignment.topRight,
-            child: IconButton(
-              icon: const Icon(Icons.favorite_border_outlined),
-              onPressed: () {},
-              iconSize: 25,
-              color: Theme.of(context).secondaryHeaderColor,
-            ),
-          ),
+          FavoriteIconButton(context.read<CoffeeCubit>().state.imageUrl),
         ],
       ),
     );

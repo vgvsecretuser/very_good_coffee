@@ -1,4 +1,5 @@
 import 'package:coffee_repository/coffee_repository.dart';
+import 'package:favorites_repository/favorites_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:very_good_coffee/app/app.dart';
 import 'package:very_good_coffee/coffee/view/coffee_page.dart';
@@ -9,6 +10,7 @@ void main() {
       await tester.pumpWidget(
         App(
           coffeeRepository: CoffeeRepository(),
+          favoritesRepository: FavoritesRepository(),
         ),
       );
       expect(find.byType(CoffeePage), findsOneWidget);

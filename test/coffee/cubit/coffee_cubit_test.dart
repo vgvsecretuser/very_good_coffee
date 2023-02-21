@@ -19,7 +19,7 @@ void main() {
       coffeeCubit = CoffeeCubit(coffeeRepository);
     });
 
-    test('initial state is correct', () {
+    test('initial state is init', () {
       final coffeeCubit = CoffeeCubit(coffeeRepository);
       expect(coffeeCubit.state.status, CoffeeRepositoryStatus.init);
     });

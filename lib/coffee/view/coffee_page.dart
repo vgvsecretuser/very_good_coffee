@@ -11,8 +11,15 @@ class CoffeePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (_) => CoffeeCubit(context.read()),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (_) => CoffeeCubit(context.read()),
+        ),
+        BlocProvider(
+          create: (context) => FavoritesIconCubit(context.read()),
+        ),
+      ],
       child: const CoffeeView(),
     );
   }
